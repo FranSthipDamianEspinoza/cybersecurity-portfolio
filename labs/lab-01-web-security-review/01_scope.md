@@ -1,3 +1,0 @@
-# 01 - Alcance
-
-Este documento describe el alcance del laboratorio de evaluación de seguridad realizado en un entorno autorizado con fines educativos.
