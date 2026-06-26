@@ -1,4 +1,4 @@
-# 01_SCOPE(Alcance)
+# 01 - SCOPE (Alcance)
 ## Descripción general del sitio
 
 El sitio evaluado corresponde a una empresa dedicada a ofrecer servicios profesionales de lavado y detallado automotriz a domicilio.
