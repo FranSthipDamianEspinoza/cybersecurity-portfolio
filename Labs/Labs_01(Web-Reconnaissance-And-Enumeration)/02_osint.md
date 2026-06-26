@@ -22,24 +22,14 @@ Entre las fuentes utilizadas durante una actividad de OSINT se encuentran:
 # Técnicas de reconocimiento utilizadas
 
 Durante esta práctica se emplearon operadores avanzados de búsqueda (Google Dorks) para localizar información pública relacionada con el objetivo.
-
 Como parte del aprendizaje previo se estudiaron consultas como:
 
 ```text
-site:udemy.com
-site:udemy.com filetype:pdf
-site:udemy.com filetype:txt
+site:sitio_autorizado.com
+site:sitio_autorizado.com filetype:pdf
+site:sitio_autorizado.com filetype:txt
 ```
-
-Posteriormente, estos conocimientos fueron aplicados sobre el dominio autorizado mediante consultas similares, por ejemplo:
-
-```text
-site:sumacccarwash.com
-```
-
 Esta técnica permitió identificar páginas indexadas por el buscador y obtener información útil antes de realizar actividades de reconocimiento activo.
-
----
 
 # Información obtenida
 
@@ -47,9 +37,9 @@ Durante la fase de reconocimiento se identificó la siguiente información públ
 
 | Elemento | Información obtenida | Observación |
 |----------|----------------------|-------------|
-| Dominio | sumacccarwash.com | Dominio principal utilizado durante la evaluación. |
-| Dirección IP | 69.6.213.218 | Dirección IP pública asociada inicialmente al dominio. |
-| Página principal | https://sumacccarwash.com | Punto de entrada del sitio web. |
+| Dominio | Sitio_autorizado.com | Dominio principal utilizado durante la evaluación. |
+| Dirección IP | 69.6.xxx.xxx | Dirección IP pública asociada inicialmente al dominio. |
+| Página principal | https://Sitio_autorizado.com | Punto de entrada del sitio web. |
 | Google Maps | Integrado | Utilizado para mostrar la ubicación física y las reseñas del negocio. |
 | Página indexada | /book-now?service_id=1&vehicle_type_id=2 | Recurso indexado previamente por Google que actualmente devuelve HTTP 404. |
 
@@ -65,49 +55,33 @@ Durante la navegación manual del sitio se identificaron las siguientes rutas ac
 | /detailing | Información de los servicios ofrecidos. | Incluye un botón de reserva que utiliza parámetros mediante el método GET. |
 | /products | Información de los productos utilizados por la empresa. | Página informativa sin interacción relevante. |
 | /book | Formulario para reservar una cita. | Durante las pruebas la reserva no pudo completarse y se mostraron mensajes relacionados con un error de conexión. |
-| /book?service=1&vehicle=2 | URL con parámetros GET utilizados por la aplicación. | Representa la selección del servicio y del tipo de vehículo antes del envío del formulario. |
+| /book?service=1&vehicle=2 | URL con parámetros GET utilizados por la aplicación. | Se realizó una manipulación básica de los parámetros GET con fines de reconocimiento. La aplicación procesó las solicitudes sin evidenciar comportamientos anómalos, errores adicionales o respuestas que indicaran una validación deficiente durante las pruebas efectuadas. |
 | /contact | Página de contacto. | Durante la evaluación respondió con un código HTTP 500 (Internal Server Error). |
-
----
 
 # Observaciones relevantes
 
 Durante la fase de reconocimiento se realizaron las siguientes observaciones:
 
-- Se identificó una integración con Google Maps utilizada para mostrar la ubicación del negocio y las reseñas de los clientes.
-- Mediante consultas en motores de búsqueda se encontró una URL previamente indexada que actualmente responde con un código HTTP 404, lo que podría indicar contenido eliminado o modificado desde la última indexación.
+- Se identificó una integración con Google Maps.
+- Mediante consultas en motores de búsqueda se encontró una URL previamente indexada que actualmente responde con un código HTTP 404.
 - La funcionalidad de reservas emplea parámetros en la URL (`service` y `vehicle`) para representar la selección realizada por el usuario antes del procesamiento del formulario.
 - La página de contacto presentó un código de respuesta HTTP 500 durante la evaluación, lo que indica un error interno del servidor que deberá ser analizado en etapas posteriores.
-- La información recopilada permitió comprender la estructura general de la aplicación y preparar las siguientes fases de reconocimiento activo y enumeración.
-
----
 
 # Análisis
 
-La fase de OSINT permitió obtener una visión general del objetivo sin realizar acciones invasivas sobre la infraestructura.
-
 La información recopilada facilitó la identificación de las principales funcionalidades del sitio, la organización de su contenido, los recursos públicos disponibles y algunos componentes externos utilizados por la aplicación.
-
 Asimismo, la identificación de rutas públicas, parámetros visibles y respuestas HTTP proporcionó información útil para planificar las siguientes fases del laboratorio, las cuales incluirán técnicas de enumeración mediante herramientas especializadas como Nmap, Gobuster y Burp Suite.
-
----
 
 # Lecciones aprendidas
 
-Durante este laboratorio comprendí la importancia de realizar una fase de reconocimiento pasivo antes de utilizar herramientas de enumeración o análisis activo.
-
-Aprendí que una gran cantidad de información útil puede obtenerse únicamente mediante fuentes abiertas, motores de búsqueda y la observación detallada del sitio web.
-
-También comprobé que una adecuada fase de OSINT permite conocer mejor la superficie de ataque del objetivo y facilita la planificación de las siguientes etapas de una evaluación de seguridad.
-
----
+- Durante este laboratorio comprendí la importancia de realizar una fase de reconocimiento pasivo antes de utilizar herramientas de enumeración o análisis activo.
+- También comprobé que una adecuada fase de OSINT permite conocer mejor la superficie de ataque del objetivo y facilita la planificación de las siguientes etapas de una evaluación de seguridad.
 
 ## Herramientas utilizadas
 
 - Google Search
 - Google Dorks
 - Navegador Web
-- Kali Linux
 
 ---
 
