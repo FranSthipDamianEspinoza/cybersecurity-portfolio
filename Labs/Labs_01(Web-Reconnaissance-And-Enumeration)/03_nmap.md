@@ -40,8 +40,6 @@ Durante el escaneo se identificaron los siguientes servicios expuestos:
 
 También se obtuvo información adicional correspondiente al registro DNS inverso (rDNS), el cual permitió identificar el proveedor de alojamiento utilizado por la infraestructura. Por motivos de confidencialidad, esta información ha sido anonimizada en este repositorio.
 
----
-
 ## Evidencia del escaneo
 
 ```text
