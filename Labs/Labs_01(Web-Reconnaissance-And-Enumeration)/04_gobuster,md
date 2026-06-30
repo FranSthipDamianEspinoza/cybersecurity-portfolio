@@ -22,7 +22,6 @@ gobuster dir -u https://www.<dominio-autorizado>.com -w /usr/share/wordlists/dir
 | `-u` | Especifica la URL del objetivo. |
 | `-w` | Indica la wordlist utilizada para probar posibles rutas. |
 
----
 
 # Resultado obtenido
 
