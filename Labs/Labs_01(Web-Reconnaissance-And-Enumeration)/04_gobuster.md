@@ -65,7 +65,7 @@ Este comportamiento impide continuar con la enumeración utilizando la configura
 gobuster dir -u https://www.<dominio-autorizado>.com -w /usr/share/wordlists/dirb/common.txt --exclude-length 6606
 ```
 
-###Salida relevante
+### Salida relevante
 
 ```text
 ┌──(kali㉿kali)-[~]
