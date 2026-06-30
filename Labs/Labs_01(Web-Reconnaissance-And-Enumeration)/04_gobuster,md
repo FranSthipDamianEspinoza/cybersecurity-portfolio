@@ -1,0 +1,101 @@
+# 04 - Gobuster
+
+## Objetivo
+Realizar la enumeración de directorios públicos del sitio web autorizado con el fin de identificar recursos accesibles que no sean visibles durante la navegación convencional.
+
+
+## ¿Qué es Gobuster?
+Gobuster es una herramienta utilizada para descubrir directorios, archivos y recursos ocultos en aplicaciones web mediante el uso de diccionarios (wordlists).
+Su finalidad es ampliar el reconocimiento del objetivo identificando rutas que podrían no estar enlazadas desde la interfaz principal.
+
+## Comando utilizado
+
+```bash
+gobuster dir -u https://www.<dominio-autorizado>.com -w /usr/share/wordlists/dirb/common.txt
+```
+
+### Explicación del comando
+
+| Parámetro | Descripción |
+|-----------|-------------|
+| `dir` | Activa el modo de enumeración de directorios. |
+| `-u` | Especifica la URL del objetivo. |
+| `-w` | Indica la wordlist utilizada para probar posibles rutas. |
+
+---
+
+# Resultado obtenido
+
+Durante la ejecución de Gobuster no fue posible iniciar la enumeración debido al comportamiento del servidor.
+La herramienta detectó que las rutas inexistentes devolvían un código de estado **HTTP 200 (OK)** en lugar de un **HTTP 404 (Not Found)**, comportamiento que impide diferenciar correctamente entre recursos existentes y recursos inexistentes.
+
+Salida relevante:
+
+```text
+──(kali㉿kali)-[~]
+└─$ gobuster dir -u https://www.sitioautorizado.com -w /usr/share/wordlists/dirb/common.txt
+===============================================================
+Gobuster v3.8.2
+by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
+===============================================================
+[+] Url:                     https://www.sitioautorizado.com
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /usr/share/wordlists/dirb/common.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.8.2
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+Progress: 0 / 1 (0.00%)
+2026/06/13 18:19:01 the server returns a status code that matches the provided options for non existing urls. 
+https://www.sitio autorizado.com/9708ace6-45e9-4e9f-88a4-93221209f433 => 200 (Length: 6606). 
+Please exclude the response length or the status code or set the wildcard option.. 
+To continue please exclude the status code or the length
+```
+
+---
+
+# Análisis
+
+Gobuster utiliza las respuestas del servidor para determinar si una ruta existe o no.En este caso, el servidor respondió con un código **HTTP 200** incluso para una ruta generada aleatoriamente, indicando una página válida en lugar de un error de recurso inexistente.
+Este comportamiento impide continuar con la enumeración utilizando la configuración inicial, ya que todas las solicitudes podrían interpretarse como válidas. La cual optamos por agregar un comando 
+
+```bash
+gobuster dir -u https://www.<dominio-autorizado>.com -w /usr/share/wordlists/dirb/common.txt --exclude-length 6606
+```
+Aunque el comando nos ayuda a excluir rutas inventadas no tocamos con otro problema que devolvia un 301, lo cual no fue posible iniciar la enumeración debido al comportamiento del servidor.
+---
+
+# Otras soluciones
+
+Para continuar con la enumeración, Gobuster permite modificar la configuración mediante opciones como:
+
+- Habilitar el modo wildcard (`--wildcard`).
+- Ajustar los códigos HTTP esperados.
+
+Estas configuraciones permiten adaptar la herramienta al comportamiento del servidor cuando todas las rutas responden con el mismo código de estado.
+
+---
+
+# Lecciones aprendidas
+
+Durante esta práctica comprendí que no siempre es posible ejecutar una herramienta utilizando su configuración por defecto.
+Antes de continuar con la enumeración es importante analizar el comportamiento del servidor y adaptar la configuración de la herramienta para obtener resultados confiables.
+Asimismo, aprendí que una respuesta HTTP 200 para rutas inexistentes no representa necesariamente una vulnerabilidad, sino una característica de configuración que debe ser considerada durante la fase de reconocimiento.
+
+---
+
+## Herramientas utilizadas
+
+- Gobuster v3.8.2
+- Kali Linux
+- Wordlist DIRB (`common.txt`)
+
+
+## Estado del laboratorio
+
+**Completado** ✔️
+
+Los resultados obtenidos servirán como referencia para futuras prácticas de enumeración utilizando configuraciones avanzadas de Gobuster.
