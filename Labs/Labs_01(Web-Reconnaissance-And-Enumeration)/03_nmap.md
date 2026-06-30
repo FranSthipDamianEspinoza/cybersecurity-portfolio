@@ -1,23 +1,9 @@
 # 03 - Nmap (Network Mapper)
 
 ## Objetivo
+Realizar una fase de reconocimiento activo sobre el objetivo autorizado con el propósito de identificar los servicios FTP, HTTP, HTTPS,SSH expuestos públicamente y comprender la superficie de ataque disponible.
 
-Realizar una fase de reconocimiento activo sobre el objetivo autorizado con el propósito de identificar los servicios expuestos públicamente y comprender la superficie de ataque disponible antes de continuar con las siguientes etapas del laboratorio.
-
-El uso de Nmap permitió conocer qué puertos se encontraban accesibles y qué servicios ofrecía el servidor durante la evaluación.
-
----
-
-# ¿Qué es Nmap?
-
-Nmap (Network Mapper) es una herramienta de código abierto ampliamente utilizada en ciberseguridad para el descubrimiento de hosts, identificación de puertos abiertos y enumeración de servicios.
-
-Durante una prueba de penetración, Nmap constituye una de las principales herramientas de reconocimiento activo, ya que permite obtener información sobre la infraestructura del objetivo de forma rápida y organizada.
-
----
-
-# Comando utilizado
-
+## Comando utilizado
 Durante esta práctica se ejecutó el siguiente comando:
 
 ```bash
@@ -31,9 +17,18 @@ nmap -sS -p 21,80,443 www.<dominio-autorizado>.com
 | `-sS` | Realiza un escaneo TCP SYN (Half Open Scan), utilizado para identificar puertos abiertos de forma eficiente. |
 | `-p` | Permite especificar los puertos que serán analizados. En este caso se evaluaron los puertos 21, 80 y 443. |
 
+Entre otros comandos podemos resaltar para un buen reconocimiento activo en el pentesting web
+
+| Comando | Descripción |
+|----------|-------------|
+| `sudo nmap -O <objetivo>` | Intenta identificar el sistema operativo del objetivo.|
+| `nmap -sV <objetivo>` | Detecta la versión de los servicios que se encuentran ejecutándose en los puertos abiertos. |
+| `nmap -A <objetivo>` | Más completo que incluye detección de versiones, sistema operativo, ejecución de scripts NSE y traceroute. |
+| `nmap -Pn <objetivo>` | Omite el descubrimiento del host y asume que el objetivo está activo, útil cuando el servidor bloquea respuestas ICMP (ping). |
+| `nmap --top-ports 1000 <objetivo>` | Escanea los 1000 puertos más comunes, permitiendo obtener una visión más amplia de los servicios expuestos. |
 ---
 
-# Resultados obtenidos
+## Resultados obtenidos
 
 Durante el escaneo se identificaron los siguientes servicios expuestos:
 
@@ -47,65 +42,29 @@ También se obtuvo información adicional correspondiente al registro DNS invers
 
 ---
 
-# Evidencia del escaneo
+## Evidencia del escaneo
 
 ```text
-Starting Nmap 7.95
+┌──(kali㉿kali)-[~]
+└─$ nmap -sS -p 80,443,21  www.sitioautorizado.com
+Starting Nmap 7.95 ( https://nmap.org ) at 2026-06-13 19:59 EDT
+Nmap scan report for www.sitioautorizado.com (69.6.xxx.xxx)
+Host is up (0.045s latency).
+rDNS record for 69.6.xxx.xxx: sh00010.hostgator.net
 
-Nmap scan report for www.<dominio-autorizado>.com
-Host is up.
+PORT    STATE SERVICE
+21/tcp  open  ftp
+80/tcp  open  http
+443/tcp open  https
 
-PORT     STATE  SERVICE
-21/tcp   open   ftp
-80/tcp   open   http
-443/tcp  open   https
-
-Nmap done.
+Nmap done: 1 IP address (1 host up) scanned in 2.37 seconds
 ```
-
----
-
-# Análisis
-
-El reconocimiento activo permitió confirmar que el servidor mantiene expuestos tres servicios principales durante la evaluación:
-
-### Servicio FTP (Puerto 21)
-
-Se identificó un servicio FTP accesible desde Internet. En esta fase del laboratorio únicamente se confirmó su disponibilidad como parte del reconocimiento inicial. No se realizaron pruebas adicionales de autenticación, enumeración o acceso, ya que dichas actividades no formaban parte del alcance definido.
-
-### Servicio HTTP (Puerto 80)
-
-El puerto 80 respondió correctamente, confirmando la disponibilidad del servicio web mediante HTTP. Este servicio permitió acceder a la versión pública del sitio y facilitó la identificación de funcionalidades visibles que posteriormente fueron analizadas con otras herramientas del laboratorio.
-
-### Servicio HTTPS (Puerto 443)
-
-El puerto 443 respondió correctamente, indicando que la aplicación también ofrece acceso mediante HTTPS para establecer comunicaciones cifradas entre el cliente y el servidor.
-
-### Registro DNS inverso (rDNS)
-
-Durante el escaneo se obtuvo un registro DNS inverso asociado al servidor. Esta información permitió inferir que la infraestructura se encuentra alojada en un proveedor de hosting externo. No se realizaron pruebas adicionales sobre dicha infraestructura, ya que se encontraba fuera del alcance autorizado.
-
----
-
-# Limitaciones del escaneo
-
-El reconocimiento realizado se limitó únicamente a los puertos especificados (21, 80 y 443), con fines educativos y dentro del alcance autorizado.
-
-No se realizaron:
-
-- Escaneo completo de todos los puertos del sistema.
-- Detección de versiones de servicios.
-- Identificación del sistema operativo.
-- Enumeración avanzada.
-- Pruebas de autenticación sobre los servicios identificados.
-
-Estas actividades quedaron fuera del alcance definido para este laboratorio.
+## Análisis
+El reconocimiento activo permitió confirmar que el servidor mantiene expuestos tres servicios principales durante la evaluación
 
 ---
 
 # Lecciones aprendidas
-
-Durante este laboratorio comprendí la importancia de la fase de reconocimiento activo dentro de una evaluación de seguridad.
 
 El uso de Nmap permitió identificar rápidamente los servicios expuestos por el servidor y obtener información relevante para planificar las siguientes etapas del análisis.
 
