@@ -74,6 +74,7 @@ Asimismo, aprendí que la identificación de un puerto abierto no implica necesa
 
 - Nmap 7.95
 - Kali Linux
+- VMware
 
 ---
 
