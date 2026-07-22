@@ -11,7 +11,7 @@ Una forma sencilla de entender cómo funciona Active Directory es imaginar una e
 | 🎫 **Service Ticket** | Es el permiso para acceder a un servicio específico, como una carpeta compartida o un servidor. |
 | 📖 **LDAP** | Es el directorio de la empresa. Permite buscar información sobre usuarios, grupos, equipos y otros objetos del dominio. |
 | 📂 **SMB** | Es el archivador de la empresa. Permite compartir carpetas y archivos entre los equipos del dominio. |
-
+ 
 ## Flujo simplificado
 
 ```text
