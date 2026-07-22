@@ -64,7 +64,7 @@ Se identificaron usuarios válidos del dominio utilizando Kerberos.
 ./kerbrute_linux_amd64 userenum -d spookysec.local --dc 10.65.171.91 userlist.txt  
 ```
 
-## 4. AS-REP Roasting
+### 4. AS-REP Roasting
 
 Se solicitó un AS-REP para identificar cuentas vulnerables sin preautenticación Kerberos.
 
@@ -77,7 +77,7 @@ Resultado:
 - Obtención del hash Kerberos del usuario vulnerable.
 - Guardamos el hash en un archivo.
 
-## 5. Crackeo del hash
+### 5. Crackeo del hash
 
 Se recuperó la contraseña en texto plano utilizando John the Ripper.
 
@@ -85,9 +85,7 @@ Se recuperó la contraseña en texto plano utilizando John the Ripper.
 john --wordlist=/usr/share/wordlists/rockyou.txt hash 
 ```
 
----
-
-## 6. Enumeración SMB
+### 6. Enumeración SMB
 
 Se validaron las credenciales obtenidas y se accedió a los recursos compartidos del dominio.
 
@@ -103,7 +101,7 @@ crackmapexec smb 10.65.171.91 -u 'svc-admin' -p 'management2005'
 smbclient -L //10.65.171.91 --user 'svc-admin@spookysec.local' -p 'management2005' 
 ```
 
-## 7. Obtención de nuevas credenciales
+### 7. Obtención de nuevas credenciales
 
 Se identificó información codificada en Base64 y posteriormente fue decodificada.
 
@@ -116,9 +114,7 @@ Resultado:
 - Usuario **backup**
 - Contraseña en texto plano
 
----
-
-## 8. DCSync
+### 8. DCSync
 
 Con la cuenta **backup** se obtuvieron los hashes NTLM del dominio.
 
@@ -130,9 +126,7 @@ Resultado:
 
 - Hash NTLM del usuario **Administrator**.
 
----
-
-## 9. Pass-the-Hash
+### 9. Pass-the-Hash
 
 Finalmente se utilizó el hash NTLM para autenticarse como Administrator sin conocer su contraseña.
 
