@@ -1,4 +1,4 @@
-# Active Directory de forma sencilla
+# Active Directory
 
 Una forma sencilla de entender cómo funciona Active Directory es imaginar una empresa.
 
