@@ -1,60 +1,38 @@
-# Active Directory
+# Windows, Active Directory & Offensive Security Learning Path
 
 ## Descripción
 
-Esta sección reúne mis apuntes, laboratorios y documentación práctica relacionados con **Active Directory (AD)**, desarrollados durante mi proceso de aprendizaje en ciberseguridad ofensiva (Red Team).
+Este repositorio documenta mi proceso de aprendizaje en Windows, Active Directory y ciberseguridad ofensiva. Aquí recopilo laboratorios, apuntes, herramientas y conceptos estudiados a través de plataformas de entrenamiento y entornos controlados, siguiendo una ruta progresiva desde los fundamentos de Windows hasta escenarios más avanzados de seguridad ofensiva.
 
-El objetivo es comprender el funcionamiento de una infraestructura Windows empresarial, identificar los principales servicios que la componen y documentar técnicas utilizadas durante laboratorios autorizados.
+## Ruta de Aprendizaje
 
-> **Nota:** Todo el contenido fue realizado únicamente en laboratorios controlados y plataformas de entrenamiento como **TryHackMe**.
+1. Windows Fundamentals
+2. Windows Administration & Security
+3. Networking Fundamentals
+4. Active Directory Fundamentals
+5. Active Directory Enumeration
+6. Credential Access
+7. Windows Privilege Escalation
+8. Lateral Movement
+9. Persistence
+10. Detection & Monitoring
+11. Internal Pentesting
+12. Active Directory Security
+13. Red Team Operations
 
-# Objetivos
+## Herramientas
 
-- Comprender la arquitectura de Active Directory.
-- Identificar los principales componentes de un dominio Windows.
-- Aprender el funcionamiento de Kerberos y NTLM.
-- Realizar enumeración en entornos Active Directory.
-- Comprender técnicas comunes utilizadas durante un Pentest Interno.
-- Documentar cada laboratorio realizado.
+* Nmap
+* BloodHound
+* CrackMapExec
+* Kerbrute
+* Impacket
+* PsExec
+* Hashcat
+* John the Ripper
+* Mimikatz
+* Sysinternals Suite
 
----
+## Aviso
 
-# Temas estudiados
-
-- Introducción a Active Directory
-- Workgroup vs Dominio
-- Domain Controller
-- Kerberos
-- LDAP
-- NTLM
-- Objetos de Active Directory
-- Group Policy (GPO)
-- Enumeración en Active Directory
-- Credential Access
-- Movimiento Lateral
-- Persistencia
-- Reporte de Pentest Interno
-
-# Laboratorios
-
-| Laboratorio | Plataforma | Estado |
-|-------------|-----------|--------|
-| Attacktive Directory | TryHackMe | ✅ Completado |
-
-
-# Herramientas utilizadas
-
-- Nmap
-- Kerbrute
-- Impacket
-- John the Ripper
-- CrackMapExec
-- smbclient
-- PsExec
-- Hashcat
-  
-# Aviso
-
-Toda la información presentada en este repositorio tiene fines exclusivamente educativos.
-
-Las técnicas documentadas fueron ejecutadas únicamente sobre laboratorios autorizados y nunca deben aplicarse contra sistemas sin autorización expresa.
+Todo el contenido de este repositorio tiene fines exclusivamente educativos y de investigación. Las técnicas, herramientas y procedimientos documentados fueron utilizados únicamente en laboratorios autorizados, entornos de práctica y plataformas de aprendizaje diseñadas para el entrenamiento en ciberseguridad.
